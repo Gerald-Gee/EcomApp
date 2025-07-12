@@ -8,6 +8,7 @@ const authRouter = Router()
 authRouter
     //post
     .post('/user/login', loggingIn)
+    
 
 
 export default authRouter
