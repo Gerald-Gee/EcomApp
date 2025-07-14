@@ -4,6 +4,7 @@ import userRouter from './routes/userRoutes.js'
 import authRouter from './routes/authRoutes.js'
 import productRouter from './routes/productRoutes.js'
 import cartRouter from './routes/cartRoutes.js'
+import uploadFileRouter from './routes/uploadFileRouter.js'
 import connectDb from './connectDb/mongodb.js'
 import dotenv from 'dotenv'
 
@@ -28,9 +29,14 @@ app.use('/api', userRouter)
 app.use('/api', authRouter)
 app.use('/api', productRouter)
 app.use('/api', cartRouter)
+app.use('/api', uploadFileRouter)
 
 const port = process.env.PORT 
 
+// app.use((req, res, next) => {
+//   console.log(`${req.method} ${req.url}`);
+//   next();
+// });
 
 app.listen(port, console.log(`server listening on port ${port}`))
 
