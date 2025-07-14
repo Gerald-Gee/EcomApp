@@ -2,6 +2,11 @@ import multer from 'multer'
 import path from 'path'
 import fs from 'fs'
 
+
+
+
+
+
 function getFolderByItsMimeType(mimeType){
     if (mimeType.startsWith('image/')) return './uploads/images'
     if (mimeType === 'application/pdf') return 'uploads/pdfs'
@@ -23,7 +28,7 @@ const storage = multer.diskStorage({
        if (fs.existsSync(filePath)){
         return cb(new Error('File already exist'), false)
        }
-       cancelAnimationFrame(null, file.originalname);
+       cb(null, file.originalname);
 
     }
 })
