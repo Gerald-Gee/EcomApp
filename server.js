@@ -6,11 +6,12 @@ import productRouter from './routes/productRoutes.js'
 import cartRouter from './routes/cartRoutes.js'
 import uploadFileRouter from './routes/uploadFileRouter.js'
 import connectDb from './connectDb/mongodb.js'
+import otpRouter from './routes/otpRoutes.js'
+import allApis from './routes/allApis.js' 
 import dotenv from 'dotenv'
 
+
 dotenv.config()
-
-
 
 
 
@@ -30,16 +31,18 @@ app.use('/api', authRouter)
 app.use('/api', productRouter)
 app.use('/api', cartRouter)
 app.use('/api', uploadFileRouter)
+app.use('/api/otp', otpRouter)
+app.use('/', allApis)
+app.use('/', (req, res) => {
+  // res.status(200).send("Welcome to Ecomm")
+})
+ 
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.url}`);
+  next();
+});
 
-const port = process.env.PORT 
 
-// app.use((req, res, next) => {
-//   console.log(`${req.method} ${req.url}`);
-//   next();
-// });
+const port = process.env.PORT
 
 app.listen(port, console.log(`server listening on port ${port}`))
-
-
-
-
