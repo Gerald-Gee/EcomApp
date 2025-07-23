@@ -9,7 +9,7 @@ import connectDb from './connectDb/mongodb.js'
 import otpRouter from './routes/otpRoutes.js'
 import allApis from './routes/allApis.js' 
 import dotenv from 'dotenv'
-
+import cors from 'cors';
 
 dotenv.config()
 
@@ -20,6 +20,7 @@ connectDb()
 const app = express()
 
 //middleware
+app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
@@ -34,7 +35,7 @@ app.use('/api', uploadFileRouter)
 app.use('/api/otp', otpRouter)
 app.use('/', allApis)
 app.use('/', (req, res) => {
-  // res.status(200).send("Welcome to Ecomm")
+  
 })
  
 app.use((req, res, next) => {
